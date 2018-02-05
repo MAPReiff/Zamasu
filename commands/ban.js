@@ -46,6 +46,6 @@ exports.conf = {
 exports.help = {
   name: "ban",
   category: "Moderation",
-  description: "Bans a mortal",
+  description: "Bans a mortal (admin role only)",
   usage: "ban NAME reason"
 };

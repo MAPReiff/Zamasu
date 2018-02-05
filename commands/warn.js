@@ -41,6 +41,6 @@ exports.conf = {
 exports.help = {
   name: "warn",
   category: "Moderation",
-  description: "Warns a mortal",
+  description: "Warns a mortal (mod role only)",
   usage: "warn NAME"
 };

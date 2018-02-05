@@ -40,6 +40,6 @@ exports.conf = {
 exports.help = {
   name: "purge",
   category: "Moderation",
-  description: "Deletes messages in bulk",
+  description: "Deletes messages in bulk (mod role only)",
   usage: "purge person # or purge #"
 };
