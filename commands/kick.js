@@ -19,7 +19,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     .setFooter("Sent via Zamasu", client.user.avatarURL)
     .setThumbnail(user.user.avatarURL)
     .setTimestamp()
-    .setColor(0x9900FF);
+    .setColor(0x74D15C);
 
   message.channel.send({
     embed: kickEmbed
