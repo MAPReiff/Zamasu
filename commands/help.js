@@ -31,6 +31,7 @@ exports.run = (client, message, args, level) => {
       }
       output += `${settings.prefix}${c.help.name}${" ".repeat(longest - c.help.name.length)} :: ${c.help.description}\n`;
     });
+    message.channel.send(`Please note, you must setup admin and mod roles to use the commands that are labled with them! You can run ${settings.prefix}config-help for setup instructions.`)
     message.channel.send(output, {code: "asciidoc", split: { char: "\u200b" }});
   } else {
     // Show individual command's help.

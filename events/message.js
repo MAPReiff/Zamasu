@@ -79,7 +79,8 @@ module.exports = (client, message) => {
     if (settings.systemNotice === "true") {
       return message.channel.send(`You do not have permission to use this command.
   Your permission level is ${level} (${client.config.permLevels.find(l => l.level === level).name})
-  This command requires level ${client.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel})`);
+  This command requires level ${client.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel})
+  Please note, server owners must setup admin and mod roles to use the commands that are labled with them! You can run ${settings.prefix}config-help for setup instructions.`);
     } else {
       return;
     }
