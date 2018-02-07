@@ -1,8 +1,8 @@
 // This event executes when a new guild (server) is joined.
-//const Discord = require("discord.js");
+const Discord = require("discord.js");
 
-//var rootDir = __dirname.replace("events", "");
-//const settings = require(rootDir + "./config.js");
+var rootDir = __dirname.replace("events", "");
+const settings = require(rootDir + "./config.js");
 
 module.exports = (client, guild) => {
   // We need to add this guild to our settings!
