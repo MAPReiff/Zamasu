@@ -1,4 +1,4 @@
-var version = "2.0";
+var version = "2.1";
 module.exports.version = version;
 
 // This will check if the node version you are running is the required
@@ -93,3 +93,9 @@ const init = async () => {
 };
 
 init();
+
+function updateGame() {
+  client.user.setGame(`v${version} | ${client.guilds.size.toLocaleString()} servers`)
+}
+
+setInterval(updateGame, 300000); //update every 5 min

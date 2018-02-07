@@ -19,12 +19,18 @@ module.exports = (client) => {
       if (message.guild && currentLevel.guildOnly) continue;
       if (currentLevel.check(message)) {
         permlvl = currentLevel.level;
-        if (message.member.hasPermission("ADMINISTRATOR")) {
-          if (permlvl < "3"){
-            permlvl = 3
-          }
+        if (message.guild) {
+          if (message.member.hasPermission("ADMINISTRATOR")) {
+            if (permlvl < "3") {
+              permlvl = 3
+            }
 
+          }
         }
+        else{
+          permlvl = permlvl
+        }
+
         break;
       }
     }
@@ -44,10 +50,14 @@ module.exports = (client) => {
 
   */
   client.awaitReply = async (msg, question, limit = 60000) => {
-    const filter = m=>m.author.id = msg.author.id;
+    const filter = m => m.author.id = msg.author.id;
     await msg.channel.send(question);
     try {
-      const collected = await msg.channel.awaitMessages(filter, { max: 1, time: limit, errors: ["time"] });
+      const collected = await msg.channel.awaitMessages(filter, {
+        max: 1,
+        time: limit,
+        errors: ["time"]
+      });
       return collected.first().content;
     } catch (e) {
       return false;
@@ -67,7 +77,9 @@ module.exports = (client) => {
     if (text && text.constructor.name == "Promise")
       text = await text;
     if (typeof evaled !== "string")
-      text = require("util").inspect(text, {depth: 0});
+      text = require("util").inspect(text, {
+        depth: 0
+      });
 
     text = text
       .replace(/`/g, "`" + String.fromCharCode(8203))
@@ -120,7 +132,9 @@ module.exports = (client) => {
   // <String>.toPropercase() returns a proper-cased string such as:
   // "Mary had a little lamb".toProperCase() returns "Mary Had A Little Lamb"
   String.prototype.toProperCase = function() {
-    return this.replace(/([^\W_]+[^\s-]*) */g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    return this.replace(/([^\W_]+[^\s-]*) */g, function(txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
   };
 
   // <Array>.random() returns a single random element from an array
