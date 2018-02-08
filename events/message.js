@@ -3,15 +3,16 @@
 // goes `client, other, args` when this function is run.
 
 module.exports = (client, message) => {
+  const Discord = require("discord.js");
   // It's good practice to ignore other bots. This also makes your bot ignore itself
   // and not get into a spam loop (we call that "botception").
   if (message.author.bot) return;
 
   // Grab the settings for this server from the PersistentCollection
   // If there is no guild, get default conf (DMs)
-  const settings = message.guild
-    ? client.settings.get(message.guild.id)
-    : client.config.defaultSettings;
+  const settings = message.guild ?
+    client.settings.get(message.guild.id) :
+    client.config.defaultSettings;
 
   // For ease of use in commands and functions, we'll attach the settings
   // to the message object, so `message.settings` is accessible.
@@ -28,6 +29,18 @@ module.exports = (client, message) => {
         if (sentMessage.includes(badWords[b])) {
           message.delete();
           message.reply("watch your tongue! You used a word that is forbidden in this realm!");
+          // const wordEmbed = new Discord.RichEmbed()
+          //   .setAuthor("Zamasu's Zero Mortals Plan")
+          //   .addField("Warned Mortal", `${user} (${user.user.tag})`)
+          //   .addField("Message", sentMessage)
+          //   .addField("Reason", "Sent a banned word.")
+          //   .setFooter("Sent via Zamasu", client.user.avatarURL)
+          //   .setThumbnail(user.user.avatarURL)
+          //   .setTimestamp()
+          //   .setColor(0x74D15C);
+          // message.guild.channels.filter(c => c.name === settings.modLogChannel).first().send({
+          //   embed: wordEmbed
+          // }).catch(err => console.log(err));
           return;
         }
       }
@@ -35,18 +48,51 @@ module.exports = (client, message) => {
   }
   if (settings.banInvites == "true") {
     if (client.permlevel(message) <= "3") {
-      var sentMessage = message.content.toString().toLowerCase();
-      if (sentMessage.includes("https://discord.gg/")) {
-        message.delete();
-        message.reply("watch your tongue! You cannot send invites to other realms!");
-        return;
-      }
-      if (sentMessage.includes("http://discord.gg/")) {
-        message.delete();
-        message.reply("watch your tongue! You cannot send invites to other realms!");
-        return;
-      }
+    var sentMessage = message.content.toString().toLowerCase();
+    if (sentMessage.includes("discord.gg/")) {
+      message.delete();
+      message.reply("watch your tongue! You cannot send invites to other realms!");
+      // const linkEmbed = new Discord.RichEmbed()
+      //   .setAuthor("Zamasu's Zero Mortals Plan")
+      //   .addField("Warned Mortal", `${message.author} (${message.author.tag})`)
+      //   .addField("Message", sentMessage)
+      //   .addField("Reason", "Sent a server invite link.")
+      //   .setFooter("Sent via Zamasu", client.user.avatarURL)
+      //   .setThumbnail(message.author.avatarURL)
+      //   .setTimestamp()
+      //   .setColor(0x74D15C);
+      // if (message.guild.channels.filter(c => c.name === settings.modLogChannel).first() == null) {
+      //   message.channel.send("wow")
+      //   message.guild.channels.filter(c => c.name === settings.modLogChannel).first().send({
+      //     embed: linkEmbed
+      //   }).catch(err => console.log(err));
+      // }
+
+      return;
     }
+    // if (sentMessage.includes("http://discord.gg/")) {
+    //   message.delete();
+    //   message.reply("watch your tongue! You cannot send invites to other realms!");
+    //   return;
+    // }
+    if (sentMessage.includes("discord.me/")) {
+      message.delete();
+      message.reply("watch your tongue! You cannot send invites to other realms!");
+      // const linkEmbed = new Discord.RichEmbed()
+      //   .setAuthor("Zamasu's Zero Mortals Plan")
+      //   .addField("Warned Mortal", `${user} (${user.user.tag})`)
+      //   .addField("Message", sentMessage)
+      //   .addField("Reason", "Sent a server invite link.")
+      //   .setFooter("Sent via Zamasu", client.user.avatarURL)
+      //   .setThumbnail(user.user.avatarURL)
+      //   .setTimestamp()
+      //   .setColor(0x74D15C);
+      // message.guild.channels.filter(c => c.name === settings.modLogChannel).first().send({
+      //   embed: linkEmbed
+      // }).catch(err => console.log(err));
+      return;
+    }
+      }
   }
 
   // Also good practice to ignore any message that does not start with our prefix,

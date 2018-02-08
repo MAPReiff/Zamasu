@@ -1,4 +1,4 @@
-var version = "2.3";
+var version = "2.4";
 module.exports.version = version;
 
 // This will check if the node version you are running is the required
