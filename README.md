@@ -19,3 +19,5 @@ Zamasu is a discord bot strictly designed around moderation. It is based on the 
 ## Planned Features
 * Muting
 * Spam protection
+
+<img src="https://i.imgur.com/3RWjOld.png"/>
