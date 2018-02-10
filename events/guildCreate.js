@@ -18,6 +18,13 @@ module.exports = (client, guild) => {
     })
     .then(() => console.log("Updated dbots.org status.")).catch((e) => e);
 
+  // bots.discord.pw
+  new fetch("POST", `https://bots.discord.pw/api/bots/${client.user.id}/stats`)
+    .set("Authorization", settings.discordbot_pw)
+    .send({
+      server_count: client.guilds.size
+    }).then(() => console.log("Updated bots.discord.pw status.")).catch((e) => e);
+
   const joinedEmbed = new Discord.RichEmbed()
     .setColor(0x74D15C)
     .setTitle("Joined " + guild.name)
