@@ -35,7 +35,7 @@ module.exports = (client, guild) => {
     .addField("Owner", guild.owner, true);
   client.channels.get("352990232624496641").sendEmbed(joinedEmbed);
 
-  if (guild.channels.first() == null) {
+  if (!guild.channels.first()) {
     return;
   } else {
     guild.channels.first().send("Hello filthy mortals, I am the God Zamasu! I have been resurrected thanks to the Super Dragon Balls, and I am here to punish mortals who step out of line.\nA list of my commands can be found by using \"z.help\". Server owners and customizer their Zero Mortals Plans by running \"z.set\" to view the config, and \"z.set edit <setting> <new option>\".");
