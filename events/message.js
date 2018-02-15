@@ -29,19 +29,26 @@ module.exports = (client, message) => {
         if (sentMessage.includes(badWords[b])) {
           message.delete();
           message.reply("watch your tongue! You used a word that is forbidden in this realm!");
-          // const wordEmbed = new Discord.RichEmbed()
-          //   .setAuthor("Zamasu's Zero Mortals Plan")
-          //   .addField("Warned Mortal", `${user} (${user.user.tag})`)
-          //   .addField("Message", sentMessage)
-          //   .addField("Reason", "Sent a banned word.")
-          //   .setFooter("Sent via Zamasu", client.user.avatarURL)
-          //   .setThumbnail(user.user.avatarURL)
-          //   .setTimestamp()
-          //   .setColor(0x74D15C);
-          // message.guild.channels.filter(c => c.name === settings.modLogChannel).first().send({
-          //   embed: wordEmbed
-          // }).catch(err => console.log(err));
-          return;
+          if (!message.guild.channels.filter(c => c.name === settings.modLogChannel).first()) {
+            return
+          }
+          else{
+            const wordEmbed = new Discord.RichEmbed()
+              .setAuthor("Zamasu's Zero Mortals Plan")
+              .addField("Warned Mortal", `${message.author} (${message.author.tag})`)
+              .addField("Message", sentMessage)
+              .addField("Reason", "Sent a banned word.")
+              .setFooter("Sent via Zamasu", client.user.avatarURL)
+              .setThumbnail(message.author.avatarURL)
+              .setTimestamp()
+              .setColor(0x74D15C);
+            message.guild.channels.filter(c => c.name === settings.modLogChannel).first().send({
+              embed: wordEmbed
+            }).catch(err => console.log(err));
+            return;
+          }
+
+
         }
       }
     }
