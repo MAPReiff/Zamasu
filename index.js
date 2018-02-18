@@ -1,4 +1,4 @@
-var version = "2.6.1";
+var version = "2.6.2";
 module.exports.version = version;
 
 // This will check if the node version you are running is the required
@@ -82,7 +82,7 @@ const init = async () => {
 
   client.on("ready", () => {
     //client.user.setActivity(`v${version} | ${client.guilds.size.toLocaleString()} servers`);
-    client.user.setGame(`v${version} | ${client.guilds.size.toLocaleString()} servers`)
+    client.user.setActivity(`v${version} | ${client.guilds.size.toLocaleString()} servers`)
 
   });
 
