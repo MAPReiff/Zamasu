@@ -104,8 +104,24 @@ module.exports = (client, message) => {
 
   // Also good practice to ignore any message that does not start with our prefix,
   // which is set in the configuration file.
-  if (message.content.indexOf(settings.prefix) !== 0) return;
+  const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
+  const prefixMention = mentionPrefix.exec(message.content);
 
+  const prefixes = [settings.prefix, `${prefixMention}`];
+  let prefix = false;
+
+  for (const thisPrefix of prefixes) {
+    if (message.content.toLowerCase().indexOf(thisPrefix) == 0) prefix = thisPrefix;
+  }
+
+  if (message.content.match(new RegExp(`^<@!?${client.user.id}>$`))) {
+    return message.channel.send(`The prefix for this server is \`${settings.prefix}\`.`);
+  }
+
+  //if (message.content.indexOf(settings.prefix) !== 0) return;
+  if (!prefix) return;
+
+  
   // Here we separate our "command" name, and our "arguments" for the command.
   // e.g. if we have the message "+say Is this the real life?" , we'll get the following:
   // command = say
