@@ -25,7 +25,7 @@
   "homepage": "https://github.com/An-Idiots-Guide/guidebot#readme",
   "dependencies": {
     "chalk": "^2.3.2",
-    "discord.js": "^11.3.1",
+    "discord.js": "^11.3.2",
     "enmap": "^0.4.6",
     "enmap-level": "^1.0.1",
     "moment": "^2.21.0",
